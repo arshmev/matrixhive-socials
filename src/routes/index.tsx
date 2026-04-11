@@ -8,7 +8,7 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Matrixhive Innovations — Robotics & IoT" },
-      { name: "description", content: "Building the Hardware LeetCode Ecosystem & Autonomous Solutions. Digital business card for Matrixhive Innovations Pvt Ltd." },
+      { name: "description", content: "Engineering the Future of Hands-on Education & Autonomous Solutions. Digital business card for Matrixhive Innovations Pvt Ltd." },
       { property: "og:title", content: "Matrixhive Innovations Pvt Ltd" },
       { property: "og:description", content: "Robotics, IoT, and autonomous solutions startup." },
     ],
@@ -18,11 +18,9 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <div className="relative min-h-screen bg-background overflow-hidden">
-      {/* Background grid */}
-      <div className="fixed inset-0 bg-grid-pattern opacity-30 pointer-events-none" />
-      {/* Radial glow */}
+      <div className="fixed inset-0 bg-grid-pattern opacity-20 pointer-events-none" />
       <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(ellipse, oklch(0.75 0.15 190 / 0.06) 0%, transparent 70%)" }}
+        style={{ background: "radial-gradient(ellipse, hsla(185, 100%, 50%, 0.04) 0%, transparent 70%)" }}
       />
 
       <div className="relative z-10 max-w-lg mx-auto pb-16">
