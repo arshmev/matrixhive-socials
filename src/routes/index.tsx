@@ -170,7 +170,7 @@ function Index() {
 
           {/* ── PRIMARY CTAs ── */}
           <div className="flex gap-3 justify-center mb-4">
-            
+            <a
               href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hi%20Arshad%2C%20I%20came%20across%20your%20profile%20and%20would%20love%20to%20connect!`}
               target="_blank"
               rel="noopener noreferrer"
@@ -183,7 +183,7 @@ function Index() {
               </svg>
               WhatsApp
             </a>
-            
+            <a
               href={LINKEDIN_URL}
               target="_blank"
               rel="noopener noreferrer"
@@ -345,7 +345,7 @@ function Index() {
           transition={{ duration: 0.5 }}
           className="flex flex-col gap-3 mb-10"
         >
-          
+          <a
             href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hi%20Arshad%2C%20I%20visited%20your%20profile%20and%20would%20like%20to%20discuss%20a%20collaboration.`}
             target="_blank"
             rel="noopener noreferrer"
@@ -357,7 +357,7 @@ function Index() {
             </svg>
             Connect on WhatsApp
           </a>
-          
+          <a
             href={LINKEDIN_URL}
             target="_blank"
             rel="noopener noreferrer"
