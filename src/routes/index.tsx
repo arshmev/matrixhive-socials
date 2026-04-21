@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { Linkedin, Mail, ExternalLink, MapPin, ChevronRight } from "lucide-react";
 
@@ -53,13 +53,14 @@ const workshops = [
   { partner: "Tricity Schools", duration: "14 Days", topic: "Robotics & IoT Fundamentals Bootcamp" },
 ];
 
-const WHATSAPP_NUMBER = "918278696121"; // ← replace with your number (no + or spaces)
-const LINKEDIN_URL = "https://www.linkedin.com/in/mohd-arshad-mew-4120a1209/"; // ← replace with your personal LinkedIn
+const WHATSAPP_NUMBER = "918278696121";
+const LINKEDIN_URL = "https://www.linkedin.com/in/mohd-arshad-mew-4120a1209/";
 
 const stagger = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.07, delayChildren: 0.1 } },
 };
+
 const fadeUp = {
   hidden: { opacity: 0, y: 14 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } },
@@ -86,7 +87,6 @@ function Index() {
           {/* Top line accent */}
           <div className="h-px w-32 bg-gradient-to-r from-transparent via-primary to-transparent mb-8 mx-auto" />
 
-        
           {/* Company + founders */}
           <div className="text-center mb-6 flex justify-center">
             <a 
@@ -195,9 +195,9 @@ function Index() {
             <p className="font-display text-xs font-semibold tracking-[0.25em] uppercase text-primary">
               Projects & Portfolio
             </p>
-            <a href="/projects" className="flex items-center gap-0.5 text-xs text-muted-foreground hover:text-primary transition-colors">
+            <Link to="/projects" className="flex items-center gap-0.5 text-xs text-muted-foreground hover:text-primary transition-colors">
               All <ChevronRight size={12} />
-            </a>
+            </Link>
           </div>
 
           <motion.div
@@ -239,9 +239,9 @@ function Index() {
             <p className="font-display text-xs font-semibold tracking-[0.25em] uppercase text-primary">
               Workshops Conducted
             </p>
-            <a href="/workshops" className="flex items-center gap-0.5 text-xs text-muted-foreground hover:text-primary transition-colors">
+            <Link to="/workshops" className="flex items-center gap-0.5 text-xs text-muted-foreground hover:text-primary transition-colors">
               Details <ChevronRight size={12} />
-            </a>
+            </Link>
           </div>
 
           <motion.div
@@ -262,7 +262,7 @@ function Index() {
             ))}
           </motion.div>
 
-          {/* Video placeholder — ready when you have clips */}
+          {/* Video placeholder */}
           <div className="mt-3 glass-card rounded-xl p-4 border-dashed text-center">
             <p className="text-xs text-muted-foreground">Workshop clips coming soon</p>
             <p className="text-[10px] text-muted-foreground/60 mt-0.5">Add your YouTube links to show session highlights</p>
