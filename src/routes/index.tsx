@@ -69,6 +69,7 @@ const fadeUp = {
 function Index() {
   return (
     <div className="relative min-h-screen bg-background overflow-hidden">
+
       {/* Background effects */}
       <div className="fixed inset-0 bg-grid-pattern opacity-20 pointer-events-none" />
       <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full pointer-events-none"
