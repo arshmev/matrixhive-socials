@@ -2,6 +2,21 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { Linkedin, Mail, ExternalLink, MapPin, ChevronRight } from "lucide-react";
 
+// --- NEW IMPORTS FOR POPUP AND SLIDER ---
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+
 export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
@@ -12,11 +27,42 @@ export const Route = createFileRoute("/")({
   }),
 });
 
+// --- UPDATED METRICS WITH IMAGE ARRAYS ---
+// Replace these paths with the actual names of the files you drop into the public/images/ folders.
 const metrics = [
-  { value: "12+", label: "Hackathons Won" },
-  { value: "70+", label: "IoT Builds" },
-  { value: "10+", label: "Robotic Systems" },
-  { value: "5+", label: "Global Clients" },
+  { 
+    value: "12+", 
+    label: "Hackathons Won",
+    images: [
+      "/images/hackathons/1.png",
+      "/images/hackathons/2.png",
+      "/images/hackathons/3.png",
+    ]
+  },
+  { 
+    value: "70+", 
+    label: "IoT Builds",
+    images: [
+      "/images/iot/1.jpg",
+      "/images/iot/2.jpg",
+    ]
+  },
+  { 
+    value: "10+", 
+    label: "Robotic Systems",
+    images: [
+      "/images/robotics/1.jpg",
+      "/images/robotics/2.jpg",
+    ]
+  },
+  { 
+    value: "4+", 
+    label: "Workshops", // Changed to Workshops as requested
+    images: [
+      "/images/workshops/1.jpg",
+      "/images/workshops/2.jpg",
+    ]
+  },
 ];
 
 const projects = [
@@ -60,7 +106,6 @@ const stagger = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.07, delayChildren: 0.1 } },
 };
-
 const fadeUp = {
   hidden: { opacity: 0, y: 14 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } },
@@ -138,7 +183,6 @@ function Index() {
               className="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold text-white transition-all duration-200 active:scale-95 hover:brightness-110"
               style={{ background: "#25D366" }}
             >
-              {/* WhatsApp icon */}
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
               </svg>
@@ -170,7 +214,7 @@ function Index() {
           </div>
         </motion.div>
 
-        {/* ─── METRICS ─── */}
+        {/* ─── POPUP METRICS GRID ─── */}
         <motion.div
           variants={stagger}
           initial="hidden"
@@ -179,14 +223,42 @@ function Index() {
           className="grid grid-cols-4 gap-2 mb-10"
         >
           {metrics.map((m) => (
-            <motion.div
-              key={m.label}
-              variants={fadeUp}
-              className="glass-card rounded-xl py-3 px-2 text-center"
-            >
-              <p className="font-display text-xl font-bold text-gradient-neon">{m.value}</p>
-              <p className="text-[10px] text-muted-foreground mt-0.5 leading-tight">{m.label}</p>
-            </motion.div>
+            <Dialog key={m.label}>
+              <DialogTrigger asChild>
+                <motion.div
+                  variants={fadeUp}
+                  className="glass-card rounded-xl py-3 px-2 text-center cursor-pointer transition-all hover:border-primary/50 hover:bg-white/5 active:scale-95"
+                >
+                  <p className="font-display text-xl font-bold text-gradient-neon">{m.value}</p>
+                  <p className="text-[10px] text-muted-foreground mt-0.5 leading-tight">{m.label}</p>
+                </motion.div>
+              </DialogTrigger>
+              <DialogContent className="max-w-xl bg-background/95 backdrop-blur-xl border-border p-2 sm:p-6 overflow-hidden">
+                <DialogTitle className="sr-only">{m.label} Portfolio</DialogTitle>
+                
+                {m.images && m.images.length > 0 ? (
+                  <Carousel className="w-full">
+                    <CarouselContent>
+                      {m.images.map((imgSrc, index) => (
+                        <CarouselItem key={index} className="flex items-center justify-center">
+                          <img 
+                            src={imgSrc} 
+                            alt={`${m.label} preview ${index + 1}`} 
+                            className="w-full max-h-[60vh] object-contain rounded-lg"
+                          />
+                        </CarouselItem>
+                      ))}
+                    </CarouselContent>
+                    <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background shadow-md border-border" />
+                    <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background shadow-md border-border" />
+                  </Carousel>
+                ) : (
+                  <div className="flex items-center justify-center h-48">
+                    <p className="text-sm text-muted-foreground">Images coming soon...</p>
+                  </div>
+                )}
+              </DialogContent>
+            </Dialog>
           ))}
         </motion.div>
 
@@ -263,7 +335,7 @@ function Index() {
             ))}
           </motion.div>
 
-          {/* Video placeholder */}
+          {/* Video placeholder — ready when you have clips */}
           <div className="mt-3 glass-card rounded-xl p-4 border-dashed text-center">
             <p className="text-xs text-muted-foreground">Workshop clips coming soon</p>
             <p className="text-[10px] text-muted-foreground/60 mt-0.5">Add your YouTube links to show session highlights</p>
